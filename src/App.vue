@@ -19,7 +19,7 @@
     <!-- <p><label><input  v-model.lazy='select'></label></p> -->
     <p><label><input type='number'  v-model="select"></label></p>
     <p>{{select}}</p>
-    <baseButton></baseButton>
+    <baseButton>Зарегистрироваться</baseButton>
 </div>
 </template>
 
