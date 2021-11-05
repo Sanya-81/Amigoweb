@@ -21,12 +21,13 @@
         
         width:  180px;
         height: 56px;
-        color: var(--blue50);
-        background-color: var(--blue600);
         border-radius: 6px;
-        box-shadow: var(--shadowNormal);
+
+        color: var(--blue50);
         font-family: 'IBM Plex Sans', sans-serif;
+        box-shadow: var(--shadowNormal);
         text-shadow: var(--textShadow);
+        background-color: var(--blue600);
         
         &:hover {
             text-shadow: none;
