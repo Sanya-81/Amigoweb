@@ -3,13 +3,15 @@
     <span class="selectLabel" id="jobLabel">Main job role</span>
     <div class="selectWrapper">
         <select class="selectNative js-selectNative" aria-labelledby="jobLabel"
-                @change= changeNative()
-                ref='select'
+                @change= changeNative($event)
+                ref='native'
         >
+                <!-- @keyup="KeyboardNavigation()" -->
             <option 
-                value="sel" 
+                value="sel"         
                 disabled 
                 selected
+                ref="option"
             > {{elSelectNative}}</option>
             <option 
                 v-for = "obj of db"
@@ -38,16 +40,15 @@
                     class = "selectCustom-option"
                     :data-value = obj.value
                     @mouseenter = "optionChecked = obj.value"
-                    @click = "elSelectNative =  obj.content, closeSelectCustom()"
+                    @click = "elSelectNative =  obj.content, 
+                      changeCustom($event),  closeSelectCustom()"
                 >{{obj.content}}</div>
             </div>
+                    <!-- @keyup=" KeyboardNavigation()" -->
         </div>
     </div>
 </div>
 </template>
-                    // v-bind='commonForSelectNativeCastom(obj.value)'
-                    // :class="[{isActive: doActive}, {isHover: optionChecked === obj.value}]"
-                   
 
 <script>
 export default {
@@ -68,24 +69,17 @@ export default {
             content: '',
         }
     },
-    // watch: {
-    //     Active(){
-    //         this.Active
-    //             ? this.openSelectCustom()
-    //             : this.closeSelectCustom();
-    //     } 
-    // },
-    // computed: {
-    //     commonForSelectNativeCastom(value){ 
-    //         this.elSelectNative = value
-    // },
     
     methods: {
-        changeNative() {
-            const value = this.$refs.select.value;
-            const proxy = this.db.filter((obj) => obj.value == value)
+        changeNative(event) {
+            const nativeValue = event.target.value;
+            const proxy = this.db.filter((obj) => obj.value == nativeValue)
             this.elSelectNative =  proxy[0].content
+            this.optionChecked = nativeValue
+        },
 
+        changeCustom(event) {
+            this.$refs.native.value = event.target.getAttribute("data-value")
         },
 
         openSelectCustom() {
@@ -105,12 +99,17 @@ export default {
                 this.Active = false
             }
         },
-        KeyboardNavigation() {
-            console.log(
+        KeyboardNavigation(e) {
+            if(this.Active && e.keyCode === 40){
+                console.log(this.optionChecked)
+                e.preventDefault();
+                const proxy = this.db[3].value
+                console.log(this.db.length)
+                this.optionChecked = proxy
+            //     const value = this.$refs.select.value;
+            // this.optionChecked = value
+            }
 
-                this.optionChecked, this.elSelectNative
-            )
-                this.optionChecked = this.elSelectNative
         }
     },
 
