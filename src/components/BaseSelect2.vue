@@ -6,7 +6,6 @@
                 @change= changeNative($event)
                 ref='native'
         >
-                <!-- @keyup="KeyboardNavigation()" -->
             <option 
                 value="sel"         
                 disabled 
@@ -18,7 +17,6 @@
                 :key  = "obj.value"
                 :value = obj.value
             >{{obj.content}}</option>    
-                <!-- @click = "elSelectNative = obj.content" -->
             
         </select>
         <div 
@@ -50,9 +48,8 @@
                         changeCustom($event),
                         closeSelectCustom()
                     "
-                >{{obj.content}} {{optionIndex}}</div>
+                >{{obj.content}}</div>
             </div>
-                    <!-- @keyup=" KeyboardNavigation()" -->
         </div>
     </div>
 </div>
@@ -110,17 +107,19 @@ export default {
                 this.Active = false
             }
         },
+        
+        currentOptionValue() {
+            const optionValue = this.db[this.optionIndex].value
+            this.optionChecked = optionValue
+        },
+
         KeyboardNavigation(e) {
             if(this.Active && e.keyCode === 40){
                 e.preventDefault();
                 
                 if(this.optionIndex != this.db.length - 1){
-                    this.optionIndex++
-                    const optionValue = this.db[this.optionIndex].value
-                    this.optionChecked = optionValue
-                    console.log(`optionIndex ${this.optionIndex}`)
-                }else{
-                    console.log(`else optionIndex ${this.optionIndex}`)
+                    this.optionIndex++;
+                    this.currentOptionValue();
                 } 
             }
 
@@ -128,29 +127,20 @@ export default {
                 e.preventDefault();
                 
                 if(this.optionIndex > 0){
-                    this.optionIndex--
-                    const optionValue = this.db[this.optionIndex].value
-                    this.optionChecked = optionValue
-                    console.log(`optionIndex ${this.optionIndex}`)
-                    console.log(e.keyCode)
-                } else {
-                    console.log(`else optionIndex ${this.optionIndex}`)
+                    this.optionIndex--;
+                    this.currentOptionValue();
                 }
             }
 
             if(this.Active && e.keyCode === 13 || e.keyCode === 32){
-                console.log(this.$refs.native.value)
                 this.$refs.native.value = this.db[this.optionIndex].value
                 this.elSelectNative = this.db[this.optionIndex].content
-                console.log(this.$refs.native.value)
                 this.closeSelectCustom()
             }
 
             if(this.Active && e.keyCode === 27){
                 this.closeSelectCustom()
-                
             }
-
         }
     },
 
