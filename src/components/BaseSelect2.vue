@@ -34,15 +34,23 @@
                 class="selectCustom-options"
             >
                 <div
-                    v-for = "obj of db"
+                    v-for = "(obj,index) of db"
                     :key  = obj.value
-                    :class="[{isActive: elSelectNative === obj.content}, {isHover: optionChecked === obj.value}]"
+                    :class="[
+                        {isActive: elSelectNative === obj.content}, {isHover: optionChecked === obj.value}
+                    ]"
                     class = "selectCustom-option"
                     :data-value = obj.value
-                    @mouseenter = "optionChecked = obj.value"
-                    @click = "elSelectNative =  obj.content, 
-                      changeCustom($event),  closeSelectCustom()"
-                >{{obj.content}}</div>
+                    @mouseenter = "
+                        optionChecked = obj.value, 
+                        optionIndex = index
+                    "
+                    @click = "
+                        elSelectNative = obj.content, 
+                        changeCustom($event),
+                        closeSelectCustom()
+                    "
+                >{{obj.content}} {{optionIndex}}</div>
             </div>
                     <!-- @keyup=" KeyboardNavigation()" -->
         </div>
@@ -62,11 +70,11 @@ export default {
             Active: false,
             ariaHidden: 'true',
             optionChecked: null,
-            optionHoveredIndex: -1,
-            'data-value': '',
+            optionIndex: -1,
             value: '',
-            elSelectNative: 'Select role...',
             content: '',
+            'data-value': '',
+            elSelectNative: 'Select role...',
         }
     },
     
@@ -101,13 +109,30 @@ export default {
         },
         KeyboardNavigation(e) {
             if(this.Active && e.keyCode === 40){
-                console.log(this.optionChecked)
                 e.preventDefault();
-                const proxy = this.db[3].value
-                console.log(this.db.length)
-                this.optionChecked = proxy
-            //     const value = this.$refs.select.value;
-            // this.optionChecked = value
+                
+                if(this.optionIndex != this.db.length - 1){
+                    this.optionIndex++
+                    const optionValue = this.db[this.optionIndex].value
+                    this.optionChecked = optionValue
+                    console.log(`optionIndex ${this.optionIndex}`)
+                }else{
+                    console.log(`else optionIndex ${this.optionIndex}`)
+                } 
+            }
+
+            if(this.Active && e.keyCode === 38){
+                e.preventDefault();
+                
+                if(this.optionIndex > 0){
+                    this.optionIndex += -1
+                    const optionValue = this.db[this.optionIndex].value
+                    this.optionChecked = optionValue
+                    console.log(`optionIndex ${this.optionIndex}`)
+                    console.log(e.keyCode)
+                } else {
+                    console.log(`else optionIndex ${this.optionIndex}`)
+                }
             }
 
         }
