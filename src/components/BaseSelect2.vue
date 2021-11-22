@@ -81,13 +81,16 @@ export default {
     methods: {
         changeNative(event) {
             const nativeValue = event.target.value;
-            const proxy = this.db.filter((obj) => obj.value == nativeValue)
+            const proxy = this.db.filter((obj, index) => {
+                this.optionIndex = index;
+                return obj.value === nativeValue}); 
             this.elSelectNative =  proxy[0].content
             this.optionChecked = nativeValue
         },
 
         changeCustom(event) {
             this.$refs.native.value = event.target.getAttribute("data-value")
+            console.log(event.target)
         },
 
         openSelectCustom() {
@@ -125,7 +128,7 @@ export default {
                 e.preventDefault();
                 
                 if(this.optionIndex > 0){
-                    this.optionIndex += -1
+                    this.optionIndex--
                     const optionValue = this.db[this.optionIndex].value
                     this.optionChecked = optionValue
                     console.log(`optionIndex ${this.optionIndex}`)
@@ -133,6 +136,19 @@ export default {
                 } else {
                     console.log(`else optionIndex ${this.optionIndex}`)
                 }
+            }
+
+            if(this.Active && e.keyCode === 13 || e.keyCode === 32){
+                console.log(this.$refs.native.value)
+                this.$refs.native.value = this.db[this.optionIndex].value
+                this.elSelectNative = this.db[this.optionIndex].content
+                console.log(this.$refs.native.value)
+                this.closeSelectCustom()
+            }
+
+            if(this.Active && e.keyCode === 27){
+                this.closeSelectCustom()
+                
             }
 
         }
