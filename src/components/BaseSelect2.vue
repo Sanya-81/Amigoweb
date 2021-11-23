@@ -71,7 +71,7 @@ export default {
             value: '',
             content: '',
             'data-value': '',
-            elSelectNative: 'Select role...',
+            elSelectNative: 'Dropdown',
         }
     },
     
@@ -182,11 +182,11 @@ export default {
         }
     }
 
-    .selectNative:focus,
-    .selectCustom.isActive .selectCustom-trigger {
-    outline: none;
-    box-shadow: white 0 0 0 0.2rem, #ff821f 0 0 0 0.4rem;
-    }
+    // .selectNative:focus,
+    // .selectCustom.isActive .selectCustom-trigger {
+    // outline: none;
+    // box-shadow: white 0 0 0 0.2rem, #ff821f 0 0 0 0.4rem;
+    // }
 
     .select {
     position: relative;
@@ -204,16 +204,16 @@ export default {
 
     .selectNative,
     .selectCustom-trigger {
-    font-size: 1.6rem;
-    background-color: #fff;
-    border: 1px solid #6f6f6f;
-    border-radius: 0.4rem;
+        font-size: 1em;
+        background-color: #fff;
+        border: 2px solid var(--blue600);
+        border-radius: 6px;
     }
 
     .selectNative {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    // -webkit-appearance: none;
+    // -moz-appearance: none;
+    // background-image: '../../public/dropDown.svg';
     background-repeat: no-repeat;
     background-position-x: 100%;
     background-position-y: 0.8rem;
@@ -221,20 +221,22 @@ export default {
     }
 
     .selectCustom-trigger {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    padding: 0.8rem 0.8rem;
-    cursor: pointer;
+        --width:  360px;
+        --height:  52px;
+        width: var(--width);
+        height: var(--height);
+        padding: calc((var(--height) / 2) - 16px);
+        position: relative;
+        cursor: pointer;
+        filter: var(--dropShadowSelect);
+        cursor: pointer;
     }
 
     .selectCustom-trigger::after {
-    content: "▾";
+    content: url('../../public/dropDown.svg');
     position: absolute;
-    top: 0;
-    line-height: 3.8rem;
-    right: 0.8rem;
+    top: -35px;
+    right: 2rem;
     }
 
     .selectCustom-trigger:hover {

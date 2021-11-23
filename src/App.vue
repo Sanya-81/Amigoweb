@@ -93,6 +93,7 @@ export default {
     --number-8: 0.16;
     --number-7: 0.08;
     --number-6: 0.0001;
+    --number-5: 0.04;
 
     --blue50: #EBF4F8;
     --blue100: #DBE2EA;
@@ -103,8 +104,10 @@ export default {
     --black8: rgba(44, 39, 56, var(--number-7));
     --black7: rgba(44, 39, 56, var(--number-8));
     --black6: rgba(44, 39, 56, var(--number-6));
+    --black5: rgba(44, 39, 56, var(--number-5));
 
     --dropShadow: drop-shadow(0px 4px 4px var(--black9));
+    --dropShadowSelect: drop-shadow(0px 4px 8px var(--black5));
     --textShadow: 0px 4px 4px var(--black9);
     --shadowNormal: 
         0px 2px 4px var(--black7), 
