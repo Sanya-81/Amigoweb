@@ -58,25 +58,21 @@ export default {
             modelValue: '',
             db: [
                 {
-                    "value": "ds",
-                    "content": "UI/UX Designer",
+                    "value": "E1",
+                    "content": "Русский",
                 },
                 {
-                    "value":"fe",
-                    "content":"Frontend Engineer",
+                    "value":"E2",
+                    "content":"Английский",
                 },
                 {
-                    "value":"be",
-                    "content":"Backend Engineer",
+                    "value":"E3",
+                    "content":"Китайский",
                 },
                 {
-                    "value":"qa",
-                    "content":"QA Engineer",
+                    "value":"E4",
+                    "content":"Испанский",
                 },
-                {
-                    "value":"un",
-                    "content":"Unicorn",
-                }
             ]
         }
     },

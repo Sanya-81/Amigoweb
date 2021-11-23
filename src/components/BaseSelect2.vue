@@ -1,6 +1,6 @@
 <template>
 <div>
-    <span class="selectLabel" id="jobLabel">Main job role</span>
+    <span class="selectLabel" id="jobLabel">Язык</span>
     <div class="selectWrapper">
         <select class="selectNative js-selectNative" aria-labelledby="jobLabel"
                 @change= changeNative($event)
@@ -71,7 +71,7 @@ export default {
             value: '',
             content: '',
             'data-value': '',
-            elSelectNative: 'Dropdown',
+            elSelectNative: 'Язык',
         }
     },
     
