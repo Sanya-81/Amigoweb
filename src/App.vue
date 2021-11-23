@@ -94,6 +94,7 @@ export default {
     --blue50: #EBF4F8;
     --blue100: #DBE2EA;
     --blue600: #0880AE;
+    --blue800: #756F86;
     --blue900: #2C2738;
 
     --black9: rgba(0, 0, 0, var(--number-9));

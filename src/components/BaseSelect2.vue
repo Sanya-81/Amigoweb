@@ -2,26 +2,32 @@
 <div>
     <span class="selectLabel" id="jobLabel">Язык</span>
     <div class="selectWrapper">
-        <select class="selectNative js-selectNative" aria-labelledby="jobLabel"
+        <select class="
+                    selectNative 
+                    js-selectNative
+                " 
+                aria-labelledby="jobLabel"
                 @change= changeNative($event)
                 ref='native'
-        >
-            <option 
+        >   <option 
                 value="sel"         
                 disabled 
                 selected
                 ref="option"
-            > {{elSelectNative}}</option>
+            > {{elSelectNative}} </option>
             <option 
                 v-for = "obj of db"
                 :key  = "obj.value"
                 :value = obj.value
-            >{{obj.content}}</option>    
+            > {{obj.content}} </option>    
             
         </select>
         <div 
             :class="{isActive: Active}"
-            class="selectCustom js-selectCustom" 
+            class="
+                selectCustom 
+                js-selectCustom
+            " 
             :aria-hidden = ariaHidden
         ><div
             @click = openSelectCustom()
@@ -35,7 +41,8 @@
                     v-for = "(obj,index) of db"
                     :key  = obj.value
                     :class="[
-                        {isActive: elSelectNative === obj.content}, {isHover: optionChecked === obj.value}
+                        {isActive: elSelectNative === obj.content}, 
+                        {isHover: optionChecked === obj.value}
                     ]"
                     class = "selectCustom-option"
                     :data-value = obj.value
@@ -182,11 +189,10 @@ export default {
         }
     }
 
-    // .selectNative:focus,
-    // .selectCustom.isActive .selectCustom-trigger {
-    // outline: none;
-    // box-shadow: white 0 0 0 0.2rem, #ff821f 0 0 0 0.4rem;
-    // }
+    .selectNative:focus,
+    .selectCustom.isActive .selectCustom-trigger {
+    outline: none;
+    }
 
     .select {
     position: relative;
@@ -204,28 +210,27 @@ export default {
 
     .selectNative,
     .selectCustom-trigger {
-        font-size: 1em;
+        --font:    16px;
+        --width:  360px;
+        --height:  52px;
+        font-size: var(--font);
+        width: var(--width);
+        height: var(--height);
+        padding: calc((var(--height) / 2) - var(--font));
+        padding-left: 16px;
         background-color: #fff;
         border: 2px solid var(--blue600);
         border-radius: 6px;
+        line-height: 2;
     }
 
     .selectNative {
-    // -webkit-appearance: none;
-    // -moz-appearance: none;
-    // background-image: '../../public/dropDown.svg';
-    background-repeat: no-repeat;
-    background-position-x: 100%;
-    background-position-y: 0.8rem;
-    padding: 0rem 0.8rem;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        content: url('../../public/dropDown.svg');
     }
 
-    .selectCustom-trigger {
-        --width:  360px;
-        --height:  52px;
-        width: var(--width);
-        height: var(--height);
-        padding: calc((var(--height) / 2) - 16px);
+    .selectCustom-trigger { 
         position: relative;
         cursor: pointer;
         filter: var(--dropShadowSelect);
@@ -239,15 +244,14 @@ export default {
     right: 2rem;
     }
 
-    .selectCustom-trigger:hover {
-    border-color: #8c00ff;
-    }
+    // .selectCustom-trigger:hover {
+    // border-color: #8c00ff;
+    // }
 
     .selectCustom-options {
-    position: absolute;
     top: calc(3.8rem + 0.8rem);
-    left: 0;
-    width: 100%;
+    margin-top: 4px;
+    width: 360px;
     border: 1px solid #6f6f6f;
     border-radius: 0.4rem;
     background-color: #fff;
@@ -255,6 +259,7 @@ export default {
     z-index: 1;
     padding: 0.8rem 0;
     display: none;
+    color: var(--900);
     }
 
     .selectCustom.isActive .selectCustom-options {
@@ -264,13 +269,14 @@ export default {
     .selectCustom-option {
     position: relative;
     padding: 0.8rem;
-    padding-left: 2.5rem;
+    padding-left: 16px;
+    color: var(--blue800);
     }
 
     .selectCustom-option.isHover,
     .selectCustom-option:hover {
-    background-color: #865bd7; // contrast AA
-    color: white;
+    background-color: var(--blue50);
+    // color: 
     cursor: default;
     }
 
@@ -286,7 +292,7 @@ export default {
     .selectCustom-option.isActive::before {
     content: "✓";
     position: absolute;
-    left: 0.8rem;
+    right: 0.8rem;
     }
 
     // ----- Theme styles -----
@@ -296,7 +302,8 @@ export default {
     }
     body {
     background: #f8f3ef;
-    font-family: Arial, Helvetica, sans-serif;
+    // font-family: Arial, Helvetica, sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     box-sizing: border-box;
     color: #343434;
     line-height: 1.5;
