@@ -1,52 +1,54 @@
 <template>
-<form class="g-prt__form">
-    <div class="g-chd__form-title">
-        <h1>Регистрация</h1>
-        <p>Уже есть аккаунт?<span> Войти</span></p>
-    </div>
-    <div class="g-chd__form-inputs">
-        <BaseInput
-            label="Имя"
-            placeholder="Введите Ваше имя"
-            type="text"
-        >
-        </BaseInput>
-        <!-- <BaseInput
-            label="Email"
-            placeholder="Введите Вашу почту"
-            type="email"
-        >
-        </BaseInput> -->
-        <!-- <BaseInput
-            label="Номер телефона"
-            placeholder="Введите Ваш телефон"
-            type="tel"
-        >
-        </BaseInput> -->
-    </div>
-    <div class="g-chd__form-select">
-    <BaseSelect2
-        :db='db'
-    ></BaseSelect2>
-    </div>
-    <div class="g-chd__form-access">
-        <p class="f-prt__form-access access">
-            <input name="check" id="check" type="checkbox" v-model="checked">
-            <label for="check" >Принимаю <span class="access--check">условия</span> использования</label>
-        </p>
-    </div>
-    <div class="g-chd__form-submit">
-        <BaseButton
-            v-if="checked === true"
-            class="button"
-        >Зарегистрироваться</BaseButton>
-        <BaseButton
-            v-else
-            class="button"
-            disabled
-        >Зарегистрироваться</BaseButton>
-    </div>    
-</form>
+<div class="g-prt__form--wrapper">
+    <form class="g-prt__form">
+        <div class="g-chd__form-title">
+            <h1>Регистрация</h1>
+            <p>Уже есть аккаунт?<span> Войти</span></p>
+        </div>
+        <div class="g-chd__form-inputs f-prt__form-input">
+            <BaseInput
+                label="Имя"
+                placeholder="Введите Ваше имя"
+                type="text"
+            >
+            </BaseInput>
+            <BaseInput
+                label="Email"
+                placeholder="Введите Вашу почту"
+                type="email"
+            >
+            </BaseInput>
+            <BaseInput
+                label="Номер телефона"
+                placeholder="Введите Ваш телефон"
+                type="tel"
+            >
+            </BaseInput>
+        </div>
+        <div class="g-chd__form-select">
+        <BaseSelect2
+            :db='db'
+        ></BaseSelect2>
+        </div>
+        <div class="g-chd__form-access">
+            <p class="f-prt__form-access access">
+                <input name="check" id="check" type="checkbox" v-model="checked">
+                <label for="check" >Принимаю <span class="access--check">условия</span> использования</label>
+            </p>
+        </div>
+        <div class="g-chd__form-submit">
+            <BaseButton
+                v-if="checked === true"
+                class="button"
+            >Зарегистрироваться</BaseButton>
+            <BaseButton
+                v-else
+                class="button"
+                disabled
+            >Зарегистрироваться</BaseButton>
+        </div>    
+    </form>
+</div>
 </template>
 
 <script>
@@ -88,11 +90,18 @@ export default {
 </script>
 
 <style>
-    .f-prt__form-access {
-        display: flex;
-        align-items: center;
-        gap: 8px;
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap');
+
+    body {
+        background: var(--white);
+        font-family: 'IBM Plex Sans', sans-serif;
+        box-sizing: border-box;
     }
+
+    body * {
+        box-sizing: inherit;
+    }
+
     input[type="checkbox"] {
         -webkit-appearance: none;
         appearance: none;
@@ -139,6 +148,7 @@ export default {
     --number-7: 0.08;
     --number-6: 0.0001;
     --number-5: 0.04;
+    --number-4: 0.02;
     
     --white: #ffffff;
     --blue50: #EBF4F8;
@@ -152,14 +162,19 @@ export default {
     --black7: rgba(44, 39, 56, var(--number-8));
     --black6: rgba(44, 39, 56, var(--number-6));
     --black5: rgba(44, 39, 56, var(--number-5));
+    --black4: rgba(44, 39, 56, var(--number-4));
 
     --dropShadowButton: 
         drop-shadow(0px 4px 4px var(--black9));
-    
-    --dropShadowSelect: 
+    --dropShadowSelect:
         drop-shadow(0px 4px 8px var(--black5)),
         drop-shadow(0px 20px 20px var(--black5));
-        
+    --dropShadowForm:
+        drop-shadow(0px 12px 24px var(--black4)),
+        drop-shadow(0px 32px 64px var(--black5));
+    
+    --dropShadowInput: var(--dropShadowSelect);
+
     --textShadow: 
         0px 4px 4px var(--black9);
     
@@ -175,11 +190,50 @@ export default {
     
     --selectBorder: var(--blue600) 0 0 0 2px; 
     }
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap');
-    .input:focus {
-        box-shadow: 0 0 1px 2px blueviolet;
+    
+    .g-prt__form--wrapper {
+        display: grid;
+        height: 100vh;
+        align-content: center;
+        justify-content: center;
+        background-color: var(--blue50);
+    }
+
+    .g-prt__form {
+        border-radius: 24px;
+        padding: 30px;
+        display: grid;
+        grid: 
+            "title" auto
+            "input" auto
+            "select" auto
+            "access" auto
+            "submit" auto
+            /minmax(360px, 460px);
+        border: 2px solid var(--blue100);
+        background-color: var(--white);
+        filter: var(--dropShadowForm);
+    }
+
+    .g-chd__form-title { grid-area: title; }
+    .g-chd__form-input { grid-area: input; }
+    .g-chd__form-select { grid-area: select; }
+    .g-chd__form-access { grid-area: access; }
+    .g-chd__form-submit { grid-area: submit; }
+
+    .f-prt__form-access {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .f-prt__form-input {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 </style>
+
 <style lang="scss">
     button {
         appearance: none;
@@ -235,15 +289,15 @@ export default {
         }
     }
 
-    .input {
-        &:invalid { 
-           background: #fdd;
-        }
+    // .input {
+    //     &:invalid { 
+    //        background: #fdd;
+    //     }
      
-        &:valid {
-            background: #dfd;
-        } 
-    }
+    //     &:valid {
+    //         background: #dfd;
+    //     } 
+    // }
 
     .validation-message {
         display: block;

@@ -163,16 +163,6 @@ export default {
 </script>
 
 <style>
-    body {
-        background: var(--white);
-        font-family: 'IBM Plex Sans', sans-serif;
-        box-sizing: border-box;
-    }
-
-    body * {
-        box-sizing: inherit;
-    }
-
     .selectNative,
     .selectCustom {
         position: relative;

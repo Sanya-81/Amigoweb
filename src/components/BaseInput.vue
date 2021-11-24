@@ -1,7 +1,7 @@
 <template>
 <div>
     <p>
-        <label>{{label}}</label>
+        <label class="inputLable">{{label}}</label>
         <br>
         <!-- <input
             class="input"
@@ -154,3 +154,20 @@ export default {
     }
 }
 </script>
+<style>
+    .inputLable {
+        display: block;
+        margin-bottom: 0.4rem;
+        color: var(--blue800);
+    }
+    
+    .input {
+        width: 100%;
+        height: 52px;
+        margin: 0 auto;
+        border: 1px solid var(--blue100);
+        border-radius: 6px;
+        background-color: var(--white);
+        filter: var(--dropShadowInput);
+    }
+</style>
