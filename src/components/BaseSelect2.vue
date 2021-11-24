@@ -162,13 +162,20 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style>
+    body {
+        background: var(--white);
+        font-family: 'IBM Plex Sans', sans-serif;
+        box-sizing: border-box;
+    }
+
+    body * {
+        box-sizing: inherit;
+    }
 
     .selectNative,
     .selectCustom {
         position: relative;
-        // width: 22rem;
-        // height: 4rem;
     }
 
     .selectCustom {
@@ -195,10 +202,6 @@ export default {
             var(--selectBorder),
             var(--shadowActive);
     }
-
-    // .select {
-        //     position: relative;
-    // }
 
     .selectLabel {
         display: block;
@@ -301,19 +304,4 @@ export default {
         position: absolute;
         right: 5%;
     }
-
-    body {
-    background: var(--white);
-    font-family: 'IBM Plex Sans', sans-serif;
-    box-sizing: border-box;
-    // color: #343434;
-    // line-height: 1.5;
-    // font-size: 1.6rem;
-    // min-height: 120vh; 
-    }
-
-    body * {
-    box-sizing: inherit;
-    }
-
 </style>

@@ -1,54 +1,62 @@
 <template>
-<form>
-    <h1>Регистрация</h1>
-    <p>Уже есть аккаунт?<span> Войти</span></p>
-    <BaseInput
-        label="Имя"
-        placeholder="Введите Ваше имя"
-        type="text"
-    >
-    </BaseInput>
-    <!-- <BaseInput
-        label="Email"
-        placeholder="Введите Вашу почту"
-        type="email"
-    >
-    </BaseInput> -->
-    <!-- <BaseInput
-        label="Номер телефона"
-        placeholder="Введите Ваш телефон"
-        type="tel"
-    >
-    </BaseInput> -->
-    
-    <p><label for="check"><input name="check" type="checkbox" v-model="checked"></label></p>
-    <BaseButton
-        v-if="checked === true"
-        class="button"
-    >Зарегистрироваться</BaseButton>
-    <BaseButton
-        v-else
-        class="button"
-        disabled
-    >Зарегистрироваться</BaseButton>
-    <input type="submit" value="button">
-    <BaseSelect/>
+<form class="g-prt__form">
+    <div class="g-chd__form-title">
+        <h1>Регистрация</h1>
+        <p>Уже есть аккаунт?<span> Войти</span></p>
+    </div>
+    <div class="g-chd__form-inputs">
+        <BaseInput
+            label="Имя"
+            placeholder="Введите Ваше имя"
+            type="text"
+        >
+        </BaseInput>
+        <!-- <BaseInput
+            label="Email"
+            placeholder="Введите Вашу почту"
+            type="email"
+        >
+        </BaseInput> -->
+        <!-- <BaseInput
+            label="Номер телефона"
+            placeholder="Введите Ваш телефон"
+            type="tel"
+        >
+        </BaseInput> -->
+    </div>
+    <div class="g-chd__form-select">
     <BaseSelect2
         :db='db'
     ></BaseSelect2>
+    </div>
+    <div class="g-chd__form-access">
+        <p class="f-prt__form-access access">
+            <input name="check" id="check" type="checkbox" v-model="checked">
+            <label for="check" >Принимаю <span class="access--check">условия</span> использования</label>
+        </p>
+    </div>
+    <div class="g-chd__form-submit">
+        <BaseButton
+            v-if="checked === true"
+            class="button"
+        >Зарегистрироваться</BaseButton>
+        <BaseButton
+            v-else
+            class="button"
+            disabled
+        >Зарегистрироваться</BaseButton>
+    </div>    
 </form>
 </template>
 
 <script>
 import BaseButton from './components/BaseButton.vue';
 import BaseInput from './components/BaseInput.vue';
-import BaseSelect from './components/BaseSelect.vue';
 import BaseSelect2 from './components/BaseSelect2.vue';
 export default {
     components: { 
         BaseButton, 
         BaseInput,
-        BaseSelect, 
         BaseSelect2, 
     },
     data() {
@@ -80,6 +88,51 @@ export default {
 </script>
 
 <style>
+    .f-prt__form-access {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    input[type="checkbox"] {
+        -webkit-appearance: none;
+        appearance: none;
+        display: grid;
+        place-content: center;
+        background-color: #fff;
+        margin: 0;
+        font: inherit;
+        color: currentColor;
+        width:  28px;
+        height: 28px;
+        border: 0.15em solid currentColor;
+        border: 0.15em solid var(--blue600);
+        border-radius: 4px;
+    }
+
+    input[type="checkbox"]::before {
+        content: "";
+        width:  16px;
+        height: 16px;
+        transform: scale(0);
+        transition: 120ms transform ease-in-out;
+        box-shadow: inset 1em 1em var(--blue600);
+        transform-origin: bottom left;
+        clip-path: polygon(15% 50%, 0 50%, 50% 100%, 100% 15%, 90% 0%, 45% 80%);
+    }
+    
+    input[type="checkbox"]:checked::before {
+        transform: scale(1);
+    }
+
+    input[type="checkbox"]:focus {
+        box-shadow: var(--shadowActive);
+        outline: none;
+    }
+
+    input[type="checkbox"]:hover {
+        box-shadow: var(--shadowHover);
+    }
+ 
     :root {
     --number-9: 0.25;
     --number-8: 0.16;
@@ -128,13 +181,20 @@ export default {
     }
 </style>
 <style lang="scss">
-    
     button {
         appearance: none;
         border: 0;
         border-radius: 0;
         background: none;
         color: inherit;
+    }
+    .access {
+        color: var(--blue800);
+    }
+
+    .access--check {
+        cursor: pointer;
+        color: var(--blue600);
     }
 
     .button {
