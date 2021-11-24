@@ -1,6 +1,6 @@
 <template>
 <div>
-    <span class="selectLabel" id="jobLabel">Язык</span>
+    <lable class="selectLabel" id="jobLabel">Язык</lable>
     <div class="selectWrapper">
         <select class="
                     selectNative 
@@ -14,7 +14,7 @@
                 disabled 
                 selected
                 ref="option"
-            > {{elSelectNative}} </option>
+            > {{elSelectState}} </option>
             <option 
                 v-for = "obj of db"
                 :key  = "obj.value"
@@ -33,7 +33,7 @@
             @click = openSelectCustom()
             class="selectCustom-trigger"
                 ref='closeSelectRoot'
-            > {{elSelectNative}}</div>
+            > {{elSelectState}}</div>
             <div 
                 class="selectCustom-options"
             >
@@ -41,7 +41,7 @@
                     v-for = "(obj,index) of db"
                     :key  = obj.value
                     :class="[
-                        {isActive: elSelectNative === obj.content}, 
+                        {isActive: elSelectState === obj.content}, 
                         {isHover: optionChecked === obj.value}
                     ]"
                     class = "selectCustom-option"
@@ -51,7 +51,7 @@
                         optionIndex = index
                     "
                     @click = "
-                        elSelectNative = obj.content, 
+                        elSelectState = obj.content, 
                         changeCustom($event),
                         closeSelectCustom()
                     "
@@ -78,7 +78,7 @@ export default {
             value: '',
             content: '',
             'data-value': '',
-            elSelectNative: 'Язык',
+            elSelectState: 'Язык',
         }
     },
     
@@ -88,7 +88,7 @@ export default {
             const proxy = this.db.filter((obj, index) => {
                 this.optionIndex = index;
                 return obj.value === nativeValue}); 
-            this.elSelectNative =  proxy[0].content
+            this.elSelectState =  proxy[0].content
             this.optionChecked = nativeValue
         },
 
@@ -141,7 +141,7 @@ export default {
 
             if(this.Active && e.keyCode === 13 || e.keyCode === 32){
                 this.$refs.native.value = this.db[this.optionIndex].value
-                this.elSelectNative = this.db[this.optionIndex].content
+                this.elSelectState = this.db[this.optionIndex].content
                 this.closeSelectCustom()
             }
 
@@ -166,15 +166,14 @@ export default {
 
     .selectNative,
     .selectCustom {
-    position: relative;
-    width: 22rem;
-    height: 4rem;
+        position: relative;
+        // width: 22rem;
+        // height: 4rem;
     }
-
 
     .selectCustom {
     position: absolute;
-    top: 0;
+    top:  0;
     left: 0;
     display: none;
     }
@@ -192,21 +191,23 @@ export default {
     .selectNative:focus,
     .selectCustom.isActive .selectCustom-trigger {
         outline: none;
-        box-shadow: var(--blue600) 0 0 0 2px;
+        box-shadow:
+            var(--selectBorder),
+            var(--shadowActive);
     }
 
-    .select {
-    position: relative;
-    }
+    // .select {
+        //     position: relative;
+    // }
 
     .selectLabel {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 0.4rem;
+        display: block;
+        margin-bottom: 0.4rem;
+        color: var(--blue800);
     }
 
     .selectWrapper {
-    position: relative;
+        position: relative;
     }
 
     .selectNative,
@@ -214,13 +215,16 @@ export default {
         --font:    16px;
         --width:  360px;
         --height:  52px;
-        font-size: var(--font);
+
         width: var(--width);
         height: var(--height);
         padding: calc((var(--height) / 2) - var(--font));
         padding-left: 16px;
-        background-color: var(--white);
         border-radius: 6px;
+        box-shadow: var(--blue100) 0 0 0 2px;
+
+        background-color: var(--white);
+        font-size: var(--font);
         line-height: 2;
     }
 
@@ -250,120 +254,66 @@ export default {
     }
 
     .selectCustom-trigger:hover {
-        box-shadow: var(--shadowHover)
+        box-shadow: var(--shadowHover),
+
     }
 
     .selectCustom-options {
-    top: calc(3.8rem + 0.8rem);
-    margin-top: 4px;
-    width: 360px;
-    border-radius: 6px;
-    background-color: var(--white);
-    box-shadow: var(--shadowNormal);
-    z-index: 1;
-    padding: 0.8rem 0;
-    display: none;
-    color: var(--900);
+        display: none;
+        width:  360px;
+        margin-top: 4px;
+        padding: 12px 0;
+        border-radius: 6px;
+        box-shadow: var(--shadowNormal);
+        background-color: var(--white);
+        color: var(--900);
+        z-index: 1;
     }
 
     .selectCustom.isActive .selectCustom-options {
-    display: block;
+        display: block;
     }
 
     .selectCustom-option {
-    position: relative;
-    padding: 0.8rem;
-    padding-left: 16px;
-    color: var(--blue800);
+        position: relative;
+        padding: 0.8rem;
+        padding-left: 16px;
+        color: var(--blue800);
     }
 
     .selectCustom-option.isHover,
     .selectCustom-option:hover {
-    background-color: var(--blue50);
-    cursor: default;
+        background-color: var(--blue50);
+        cursor: default;
     }
 
     .selectCustom-option:not(:last-of-type)::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    border-bottom: 1px solid #d3d3d3;
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        border-bottom: 1px solid var(--blue100);
     }
 
     .selectCustom-option.isActive::before {
-    content: "✓";
-    position: absolute;
-    right: 0.8rem;
+        content: "✓";
+        position: absolute;
+        right: 5%;
     }
 
-    // ----- Theme styles -----
-
-    html {
-    font-size: 62.5%;
-    }
     body {
-    background: #f8f3ef;
+    background: var(--white);
     font-family: 'IBM Plex Sans', sans-serif;
     box-sizing: border-box;
-    color: #343434;
-    line-height: 1.5;
-    font-size: 1.6rem;
-    min-height: 120vh; /* using arrow keys in the select, does not scroll the page */
+    // color: #343434;
+    // line-height: 1.5;
+    // font-size: 1.6rem;
+    // min-height: 120vh; 
     }
 
     body * {
     box-sizing: inherit;
     }
 
-    strong {
-    font-weight: 600;
-    }
-
-    .title {
-    font-size: 2rem;
-    font-weight: 600;
-    margin: 1.6rem;
-    line-height: 1.2;
-    text-align: center;
-    }
-
-    .card {
-    position: relative;
-    margin: 2rem auto;
-    max-width: calc(100% - 2rem);
-    width: 40rem;
-    background: white;
-    padding: 3rem;
-    box-shadow: 0.2rem 0.2rem #e9e1f8;
-    }
-
-    .inst {
-    margin-bottom: 1rem;
-    }
-
-    .note {
-    font-size: 1.4rem;
-    margin: 2rem 0 0;
-    color: #6b6b6b;
-    }
-
-    .link {
-        display: inline-block;
-        color: inherit;
-        text-decoration-color: #9b78de;
-        padding: 0.1rem 0.2rem;
-        transform: translateX(-0.1em);
-        margin-right: -0.1em;
-
-        &:hover {
-            color: #8c00ff;
-        }
-
-        &:focus {
-            outline: none;
-            background-color: #e9e1f8;
-        }
-    }
 </style>

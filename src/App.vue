@@ -81,10 +81,6 @@ export default {
 
 <style>
     :root {
-    --select-border: #777;
-    --select-focus: blue;
-    --select-arrow: var(--select-border);
-
     --number-9: 0.25;
     --number-8: 0.16;
     --number-7: 0.08;
@@ -123,7 +119,8 @@ export default {
     --shadowActive: 
         0px 2px 4px var(--black6), 
         0px 4px 8px var(--black7);
-        
+    
+    --selectBorder: var(--blue600) 0 0 0 2px; 
     }
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap');
     .input:focus {
