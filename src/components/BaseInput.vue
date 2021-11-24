@@ -156,18 +156,21 @@ export default {
 </script>
 <style>
     .inputLable {
-        display: block;
-        margin-bottom: 0.4rem;
         color: var(--blue800);
     }
     
     .input {
+        margin-top: 7px;
+        outline: none;
         width: 100%;
         height: 52px;
-        margin: 0 auto;
-        border: 1px solid var(--blue100);
+        padding-left: 16px;
         border-radius: 6px;
+        border: 1px solid var(--blue100);
+        box-shadow:  var(--shadowNormal);
         background-color: var(--white);
-        filter: var(--dropShadowInput);
+    }
+    .input::placeholder {
+        color: var(--blue600);
     }
 </style>

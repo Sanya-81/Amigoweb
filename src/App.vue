@@ -2,8 +2,8 @@
 <div class="g-prt__form--wrapper">
     <form class="g-prt__form">
         <div class="g-chd__form-title">
-            <h1>Регистрация</h1>
-            <p>Уже есть аккаунт?<span> Войти</span></p>
+            <h1 class="h1">Регистрация</h1>
+            <p>Уже есть аккаунт?<span class="access--check"> Войти</span></p>
         </div>
         <div class="g-chd__form-inputs f-prt__form-input">
             <BaseInput
@@ -93,9 +93,10 @@ export default {
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap');
 
     body {
-        background: var(--white);
         font-family: 'IBM Plex Sans', sans-serif;
         box-sizing: border-box;
+        color: var(--blue800);
+        background: var(--white);
     }
 
     body * {
@@ -158,8 +159,8 @@ export default {
     --blue900: #2C2738;
 
     --black9: rgba(0, 0, 0, var(--number-9));
-    --black8: rgba(44, 39, 56, var(--number-7));
-    --black7: rgba(44, 39, 56, var(--number-8));
+    --black8: rgba(44, 39, 56, var(--number-8));
+    --black7: rgba(44, 39, 56, var(--number-7));
     --black6: rgba(44, 39, 56, var(--number-6));
     --black5: rgba(44, 39, 56, var(--number-5));
     --black4: rgba(44, 39, 56, var(--number-4));
@@ -188,7 +189,7 @@ export default {
         0px 2px 4px var(--black6), 
         0px 4px 8px var(--black7);
     
-    --selectBorder: var(--blue600) 0 0 0 2px; 
+    --shadowBorder: var(--blue600) 0 0 0 2px; 
     }
     
     .g-prt__form--wrapper {
@@ -231,6 +232,10 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: center;
+    }
+
+    .h1 {
+        font-size: 34px;
     }
 </style>
 

@@ -170,6 +170,7 @@ export default {
 
     .selectCustom {
     position: absolute;
+    width: 100%;
     top:  0;
     left: 0;
     display: none;
@@ -179,7 +180,7 @@ export default {
         .selectCustom {
             display: block;
         }
-
+ 
         .selectNative:focus + .selectCustom {
             display: none;
         }
@@ -189,7 +190,7 @@ export default {
     .selectCustom.isActive .selectCustom-trigger {
         outline: none;
         box-shadow:
-            var(--selectBorder),
+            var(--shadowBorder),
             var(--shadowActive);
     }
 
@@ -206,10 +207,10 @@ export default {
     .selectNative,
     .selectCustom-trigger {
         --font:    16px;
-        --width:  360px;
+        /* --width:  360px; */
         --height:  52px;
 
-        width: var(--width);
+        width: 100%;
         height: var(--height);
         padding: calc((var(--height) / 2) - var(--font));
         padding-left: 16px;
@@ -234,7 +235,6 @@ export default {
 
     .selectCustom-trigger { 
         position: relative;
-        cursor: pointer;
         filter: var(--dropShadowSelect);
         cursor: pointer;
     }
@@ -247,13 +247,16 @@ export default {
     }
 
     .selectCustom-trigger:hover {
-        box-shadow: var(--shadowHover),
+        box-shadow: 
+        var(--shadowBorder),
+        var(--shadowHover);
 
     }
 
     .selectCustom-options {
+        position: absolute;
         display: none;
-        width:  360px;
+        width:  100%;
         margin-top: 4px;
         padding: 12px 0;
         border-radius: 6px;
@@ -272,6 +275,7 @@ export default {
         padding: 0.8rem;
         padding-left: 16px;
         color: var(--blue800);
+        background-color: var(--white);
     }
 
     .selectCustom-option.isHover,
