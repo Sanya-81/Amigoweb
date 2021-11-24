@@ -191,7 +191,8 @@ export default {
 
     .selectNative:focus,
     .selectCustom.isActive .selectCustom-trigger {
-    outline: none;
+        outline: none;
+        box-shadow: var(--blue600) 0 0 0 2px;
     }
 
     .select {
@@ -218,8 +219,7 @@ export default {
         height: var(--height);
         padding: calc((var(--height) / 2) - var(--font));
         padding-left: 16px;
-        background-color: #fff;
-        border: 2px solid var(--blue600);
+        background-color: var(--white);
         border-radius: 6px;
         line-height: 2;
     }
@@ -227,7 +227,12 @@ export default {
     .selectNative {
         -webkit-appearance: none;
         -moz-appearance: none;
-        content: url('../../public/dropDown.svg');
+        border-style: none;
+        background: url('../../public/dropDown.svg');
+        background-color: var(--white);
+        background-repeat: no-repeat;
+        background-position-x: 95%;
+        background-position-y: 50%;
     }
 
     .selectCustom-trigger { 
@@ -238,24 +243,23 @@ export default {
     }
 
     .selectCustom-trigger::after {
-    content: url('../../public/dropDown.svg');
-    position: absolute;
-    top: -35px;
-    right: 2rem;
+        content: url('../../public/dropDown.svg');
+        position: absolute;
+        top: -65%;
+        right: 5%;
     }
 
-    // .selectCustom-trigger:hover {
-    // border-color: #8c00ff;
-    // }
+    .selectCustom-trigger:hover {
+        box-shadow: var(--shadowHover)
+    }
 
     .selectCustom-options {
     top: calc(3.8rem + 0.8rem);
     margin-top: 4px;
     width: 360px;
-    border: 1px solid #6f6f6f;
-    border-radius: 0.4rem;
-    background-color: #fff;
-    box-shadow: 0 0 4px #e9e1f8;
+    border-radius: 6px;
+    background-color: var(--white);
+    box-shadow: var(--shadowNormal);
     z-index: 1;
     padding: 0.8rem 0;
     display: none;
@@ -276,7 +280,6 @@ export default {
     .selectCustom-option.isHover,
     .selectCustom-option:hover {
     background-color: var(--blue50);
-    // color: 
     cursor: default;
     }
 
@@ -302,7 +305,6 @@ export default {
     }
     body {
     background: #f8f3ef;
-    // font-family: Arial, Helvetica, sans-serif;
     font-family: 'IBM Plex Sans', sans-serif;
     box-sizing: border-box;
     color: #343434;

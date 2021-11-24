@@ -90,7 +90,8 @@ export default {
     --number-7: 0.08;
     --number-6: 0.0001;
     --number-5: 0.04;
-
+    
+    --white: #ffffff;
     --blue50: #EBF4F8;
     --blue100: #DBE2EA;
     --blue600: #0880AE;
@@ -103,9 +104,16 @@ export default {
     --black6: rgba(44, 39, 56, var(--number-6));
     --black5: rgba(44, 39, 56, var(--number-5));
 
-    --dropShadow: drop-shadow(0px 4px 4px var(--black9));
-    --dropShadowSelect: drop-shadow(0px 4px 8px var(--black5));
-    --textShadow: 0px 4px 4px var(--black9);
+    --dropShadowButton: 
+        drop-shadow(0px 4px 4px var(--black9));
+    
+    --dropShadowSelect: 
+        drop-shadow(0px 4px 8px var(--black5)),
+        drop-shadow(0px 20px 20px var(--black5));
+        
+    --textShadow: 
+        0px 4px 4px var(--black9);
+    
     --shadowNormal: 
         0px 2px 4px var(--black7), 
         0px 4px 8px var(--black7);
@@ -155,7 +163,7 @@ export default {
         &:hover {
             text-shadow: none;
             box-shadow: var(--shadowHover);    
-            filter: var(--dropShadow)
+            filter: var(--dropShadowButton)
         }
 
         &:active {
