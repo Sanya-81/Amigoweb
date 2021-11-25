@@ -275,7 +275,7 @@ export default {
         padding: 0.8rem;
         padding-left: 16px;
         color: var(--blue800);
-        background-color: var(--white);
+        /* background-color: var(--white); */
     }
 
     .selectCustom-option.isHover,
