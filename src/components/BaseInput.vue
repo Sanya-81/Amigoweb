@@ -154,7 +154,7 @@ export default {
     }
 }
 </script>
-<style>
+<style lang="scss">
     .inputLable {
         color: var(--blue800);
     }
@@ -169,8 +169,21 @@ export default {
         border: 1px solid var(--blue100);
         box-shadow:  var(--shadowNormal);
         background-color: var(--white);
-    }
-    .input::placeholder {
-        color: var(--blue600);
+    
+        &::placeholder {
+            color: var(--blue600);
+        }
+
+        &:focus {
+            box-shadow:
+                var(--shadowBorder),
+                var(--shadowActive);
+
+        }
+        &:hover {
+            box-shadow: 
+                var(--shadowBorder), 
+                var(--shadowHover);
+        }
     }
 </style>

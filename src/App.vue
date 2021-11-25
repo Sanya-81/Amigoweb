@@ -3,7 +3,7 @@
     <form class="g-prt__form">
         <div class="g-chd__form-title">
             <h1 class="h1">Регистрация</h1>
-            <p>Уже есть аккаунт?<span class="access--check"> Войти</span></p>
+            <p class="access--title">Уже есть аккаунт?<span class="access--check"> Войти</span></p>
         </div>
         <div class="g-chd__form-inputs f-prt__form-input">
             <BaseInput
@@ -202,15 +202,15 @@ export default {
 
     .g-prt__form {
         border-radius: 24px;
-        padding: 30px;
+        padding: 40px 30px;
         display: grid;
         grid: 
-            "title" auto
+            "title" 110px
             "input" auto
             "select" auto
             "access" auto
             "submit" auto
-            /minmax(360px, 460px);
+            /minmax(360px, 400px);
         border: 2px solid var(--blue100);
         background-color: var(--white);
         filter: var(--dropShadowForm);
@@ -236,6 +236,7 @@ export default {
 
     .h1 {
         font-size: 34px;
+        margin: 0 0 10px 0;
     }
 </style>
 
@@ -254,6 +255,10 @@ export default {
     .access--check {
         cursor: pointer;
         color: var(--blue600);
+    }
+    
+    .access--title {
+        display: inline;
     }
 
     .button {
