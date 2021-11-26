@@ -20,7 +20,7 @@
             :type="type"
             :placeholder="placeholder"
             required
-            minlength="5"
+            :pattern="pattern"
             id="name"
             name="name"
             aria-describedby="name-validation">
@@ -56,16 +56,23 @@ export default {
         type: {
             type: [String, Number],
             default: '',
-        }
+        },
     },
     data() {
         return {
             err: '',
-            reg:{
-                "text": '[a-z]{5}',
-                "tel":'\\d{4,8}',
+            pattern: '',
+            regular:{
+                "text": "[A-Za-zА-ЯЁа-яё]{3,}",
+                "tel": "[0-9]{11}",
+                "email": ".+@.+\\..+"
             },
         }
+    },
+
+    created(){
+        // заполняет pattern для input и подготавливает строку для ошибки
+        this.initValidation()
     },
     
     methods: {
@@ -74,11 +81,8 @@ export default {
             const inputValid = input.checkValidity();
             const span = this.$refs.span;
 
-            console.log(inputValid)
-            console.log(e.target.checkValidity())
-
             if (!inputValid) {
-                this.Error();
+                // this.initValidation();
                 input.setCustomValidity(this.err);
                 span.innerText = input.validationMessage;
                 input.setCustomValidity('');
@@ -87,26 +91,33 @@ export default {
             }
         },
        
-   
+        RegExp(type) {
+            console.log(this.regular[type])
+            return this.regular[type]
+        },
+
         doText() {
-            return  'укажите Ваше имя'
+            return  'Имя должно быть более 3 букв и не должно содержать цифр, символов, пробелов'
         },
         doEmail() {
-            return 'Адрес почты должет иметь "@"'
+            return 'Почта должна заполненна корректно. присутствие символа "@" обязательно '
         },
         doTel() {
-            return  'номер телефона должен иметь 11 символов'
+            return  'номер телефона должен содержать 11 символов'
         },
-        Error(){ 
+        initValidation(){ 
         switch(this.type) {
                 case 'text':
-                    this.err = this.doText();
+                    this.pattern = this.RegExp(this.type);
+                    this.err = this.doText(this.type);
                     break;
                 case 'email':
-                    this.err = this.doEmail();
+                    this.pattern = this.RegExp(this.type);
+                    this.err = this.doEmail(this.type);
                     break;
                 case 'tel':
-                    this.err = this.doTel();
+                    this.pattern = this.RegExp(this.type);
+                    this.err = this.doTel(this.type);
                     break;
                 default:
                     console.log('this is not text or email type')
