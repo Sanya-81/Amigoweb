@@ -1,6 +1,6 @@
 <template>
 <div>
-    <lable class="selectLabel" id="jobLabel">Язык</lable>
+    <p class="selectLabel" id="jobLabel">Язык</p>
     <div class="selectWrapper">
         <select class="
                     selectNative 

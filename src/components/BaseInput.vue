@@ -14,34 +14,24 @@
         <br> -->
         <input
             class="input"
+            ref="input"
             v-bind="$attrs"
-            @change="isName"
+            @blur ="blur"
             :type="type"
             :placeholder="placeholder"
             required
             minlength="5"
             id="name"
             name="name"
-            aria-describedby="name-validation"
-            ref="input"
-            @blur ="b"
-        ><span 
+            aria-describedby="name-validation">
+        <span 
+            ref='span'
             id="name-validation" 
             aria-live="assertive" 
-            class="validation-message"
-            ref='span'
-        
-        ></span>
-
-            <!-- @invalid="customInValid" -->
-            <!-- @valid="customValid" -->
-            <!-- :minlength="num()" -->
-            <!-- :pattern="regE()" -->
+            class="validation-message">
+        </span>
         <br>
-        <span
-        >{{Err}}</span>
     </p>
-    <div id="password-minlength">Enter at lest eignt characters</div>
 
 </div>
 </template>
@@ -70,82 +60,53 @@ export default {
     },
     data() {
         return {
-            Err: '',
+            err: '',
             reg:{
                 "text": '[a-z]{5}',
                 "tel":'\\d{4,8}',
             },
         }
     },
-    mounted(){
-        this.bb()
-    },
+    
     methods: {
-        bb(){
-            const input = this.$refs.input;
-            input.setCustomValidity('hello!!!')
-        },
-        b(e){
-            const isValid = e.target.validity.valid;
-            console.dir(e.target)
-            const message = e.target.validationMessage;
-            const connectedValidationId = e.target.getAttribute('aria-describedby');
-            const connectedValidation = connectedValidationId 
-                ? this.$refs.span
-                : false;
-            console.log(isValid, message, connectedValidationId, connectedValidation)
-            if (connectedValidation && message && !isValid) {
-                connectedValidation.innerText = message;
+        blur(e){
+            const input = e.target;
+            const inputValid = input.checkValidity();
+            const span = this.$refs.span;
+
+            console.log(inputValid)
+            console.log(e.target.checkValidity())
+
+            if (!inputValid) {
+                this.Error();
+                input.setCustomValidity(this.err);
+                span.innerText = input.validationMessage;
+                input.setCustomValidity('');
             } else {
-                connectedValidation.innerText = '';
+                span.innerText = '';
             }
         },
        
-        customInValid(e){
-            const input = e.target;
-            console.dir(input)
-                input.setCustomValidity('Sanya')
-        },
-        num(){
-            
-           return this.type === 'tel' ? 8 : null
-        },
-        regE(){
-            if(this.type === 'tel'){
-                console.log('tel')
-                return this.reg.tel
-            }else if(this.type === 'text'){
-                console.log('text')
-                return this.reg.text
-            }else {
-                return null
-            }
-        },
-        isName(e) {
-            this.Err = e.target.value;
-            
-        },
+   
         doText() {
-            return  'this is TEXT!'
+            return  'укажите Ваше имя'
         },
         doEmail() {
-            return 'this is EMAIL!'
+            return 'Адрес почты должет иметь "@"'
         },
         doTel() {
-            return  'this is PHONE!'
-        }
-    },
-    watch: {
-        Err(){ 
+            return  'номер телефона должен иметь 11 символов'
+        },
+        Error(){ 
         switch(this.type) {
                 case 'text':
-                    this.Err = this.doText();
+                    this.err = this.doText();
                     break;
                 case 'email':
-                    this.Err = this.doEmail();
+                    this.err = this.doEmail();
                     break;
                 case 'tel':
-                    this.Err = this.doTel();
+                    this.err = this.doTel();
                     break;
                 default:
                     console.log('this is not text or email type')

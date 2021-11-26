@@ -26,9 +26,9 @@
             </BaseInput>
         </div>
         <div class="g-chd__form-select">
-        <BaseSelect2
+        <BaseSelect
             :db='db'
-        ></BaseSelect2>
+        ></BaseSelect>
         </div>
         <div class="g-chd__form-access">
             <p class="f-prt__form-access access">
@@ -54,12 +54,12 @@
 <script>
 import BaseButton from './components/BaseButton.vue';
 import BaseInput from './components/BaseInput.vue';
-import BaseSelect2 from './components/BaseSelect2.vue';
+import BaseSelect from './components/BaseSelect.vue';
 export default {
     components: { 
         BaseButton, 
         BaseInput,
-        BaseSelect2, 
+        BaseSelect, 
     },
     data() {
         return {
