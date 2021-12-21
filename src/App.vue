@@ -141,7 +141,6 @@ export default {
     input[type="checkbox"]:hover {
         box-shadow: var(--shadowHover);
     }
-    
     .g-prt__form--wrapper {
         display: grid;
         height: 100vh;
