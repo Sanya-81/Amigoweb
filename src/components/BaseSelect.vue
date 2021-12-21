@@ -2,13 +2,11 @@
 <div>
     <p class="selectLabel" id="jobLabel">Язык</p>
     <div class="selectWrapper">
-        <select class="
-                    selectNative 
-                    js-selectNative
-                " 
-                aria-labelledby="jobLabel"
-                @change= changeNative($event)
-                ref='native'
+        <select 
+            class="selectNative" 
+            aria-labelledby="jobLabel"
+            @change= changeNative($event)
+            ref='native'
         >   <option 
                 value="sel"         
                 disabled 
@@ -24,15 +22,12 @@
         </select>
         <div 
             :class="{isActive: Active}"
-            class="
-                selectCustom 
-                js-selectCustom
-            " 
+            class=" selectCustom " 
             :aria-hidden = ariaHidden
         ><div
             @click = openSelectCustom()
             class="selectCustom-trigger"
-                ref='closeSelectRoot'
+            ref='closeSelectRoot'
             > {{elSelectState}}</div>
             <div 
                 class="selectCustom-options"
@@ -190,7 +185,7 @@ export default {
     .selectCustom.isActive .selectCustom-trigger {
         outline: none;
         box-shadow:
-            var(--shadowNormal),
+            var(--shadowNormal);
     }
 
     .selectLabel {
