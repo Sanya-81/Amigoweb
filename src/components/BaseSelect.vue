@@ -190,8 +190,7 @@ export default {
     .selectCustom.isActive .selectCustom-trigger {
         outline: none;
         box-shadow:
-            var(--shadowBorder),
-            var(--shadowActive);
+            var(--shadowNormal),
     }
 
     .selectLabel {
@@ -217,7 +216,7 @@ export default {
         border-radius: 6px;
         box-shadow: var(--blue100) 0 0 0 2px;
 
-        background-color: var(--white);
+        background-color: var(--grey0);
         font-size: var(--font);
         line-height: 2;
     }
@@ -227,7 +226,7 @@ export default {
         -moz-appearance: none;
         border-style: none;
         background: url('../../public/dropDown.svg');
-        background-color: var(--white);
+        background-color: var(--grey0);
         background-repeat: no-repeat;
         background-position-x: 95%;
         background-position-y: 50%;
@@ -235,7 +234,7 @@ export default {
 
     .selectCustom-trigger { 
         position: relative;
-        filter: var(--dropShadowSelect);
+        /* filter: var(--dropShadowSelect); */
         cursor: pointer;
     }
 
@@ -248,7 +247,6 @@ export default {
 
     .selectCustom-trigger:hover {
         box-shadow: 
-        var(--shadowBorder),
         var(--shadowHover);
 
     }
@@ -261,8 +259,7 @@ export default {
         padding: 12px 0;
         border-radius: 6px;
         box-shadow: var(--shadowNormal);
-        background-color: var(--white);
-        color: var(--900);
+        background-color: var(--grey0);
         z-index: 1;
     }
 
@@ -274,13 +271,12 @@ export default {
         position: relative;
         padding: 0.8rem;
         padding-left: 16px;
-        color: var(--blue800);
-        /* background-color: var(--white); */
+        color: var(--blue-magenta600);
     }
 
     .selectCustom-option.isHover,
     .selectCustom-option:hover {
-        background-color: var(--blue50);
+        background-color: var(--cyan-blue100);
         cursor: default;
     }
 

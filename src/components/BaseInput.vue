@@ -128,7 +128,7 @@ export default {
 </script>
 <style lang="scss">
     .inputLable {
-        color: var(--blue800);
+        color: var(--blue-magenta600);
     }
     
     .input {
@@ -138,12 +138,12 @@ export default {
         height: 52px;
         padding-left: 16px;
         border-radius: 6px;
-        border: 1px solid var(--blue100);
+        border: 1px solid var(--blue200);
         box-shadow:  var(--shadowNormal);
-        background-color: var(--white);
+        background-color: var(--magenta-red100);
     
         &::placeholder {
-            color: var(--blue600);
+            color: var(--cyan-blue600);
         }
 
         &:focus {
@@ -157,5 +157,15 @@ export default {
                 var(--shadowBorder), 
                 var(--shadowHover);
         }
+    }
+    
+    .input {
+        // &:invalid { 
+        //     background: var(--red100);
+        // }
+     
+        &:valid {
+            background: var(--green100);
+        } 
     }
 </style>
