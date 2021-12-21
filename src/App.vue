@@ -52,8 +52,8 @@
 </template>
 
 <script>
-import BaseButton from './components/BaseButton.vue';
 import BaseInput from './components/BaseInput.vue';
+import BaseButton from './components/BaseButton.vue';
 import BaseSelect from './components/BaseSelect.vue';
 export default {
     components: { 
