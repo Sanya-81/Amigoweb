@@ -140,10 +140,12 @@ export default {
         border-radius: 6px;
         border: 1px solid var(--blue200);
         box-shadow:  var(--shadowNormal);
+        background-color: var(--red100);
         background-color: var(--magenta-red100);
+        background-color: hsl( 0, 100%, 98%);
     
         &::placeholder {
-            color: var(--cyan-blue600);
+            color: hsl( 0, 100%, 80%);
         }
 
         &:focus {

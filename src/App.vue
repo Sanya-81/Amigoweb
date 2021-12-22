@@ -124,9 +124,11 @@ export default {
         height: 16px;
         transform: scale(0);
         transition: 120ms transform ease-in-out;
-        box-shadow: inset 2px 2px var(--cyan600);
-        transform-origin: bottom left;
-        clip-path: polygon(15% 50%, 0 50%, 50% 100%, 100% 15%, 90% 0%, 45% 80%);
+        /* box-shadow: inset 2px 2px var(--cyan600); */
+        transform-origin: center;
+        background: var(--green-cyan700);
+        /* transform-origin: bottom left; */
+        /* clip-path: polygon(15% 50%, 0 50%, 50% 100%, 100% 15%, 90% 0%, 45% 80%); */
     }
     
     input[type="checkbox"]:checked::before {
@@ -203,13 +205,10 @@ export default {
         display: inline;
     }
 
-    
-
-
     .validation-message {
         display: block;
         padding-top: 0.4em;
-        color: var(--red-yellow700);
+        color: var(--red700);
     }
 </style>
 
