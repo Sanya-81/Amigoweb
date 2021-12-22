@@ -30,11 +30,10 @@
             :db='db'
         ></BaseSelect>
         </div>
-        <div class="g-chd__form-access">
-            <p class="f-prt__form-access access">
-                <input name="check" id="check" type="checkbox" v-model="checked">
-                <label for="check" >Принимаю <span class="access--check">условия</span> использования</label>
-            </p>
+        <div class="g-chd__form-chekbox">
+            <base-checkbox>
+                Принимаю <span class="access--check">условия</span> использования
+            </base-checkbox>            
         </div>
         <div class="g-chd__form-submit">
             <BaseButton
@@ -55,11 +54,13 @@
 import BaseInput from './components/BaseInput.vue';
 import BaseButton from './components/BaseButton.vue';
 import BaseSelect from './components/BaseSelect.vue';
+import BaseCheckbox from './components/BaseCheckbox.vue';
 export default {
     components: { 
         BaseButton, 
         BaseInput,
-        BaseSelect, 
+        BaseSelect,
+        BaseCheckbox, 
     },
     data() {
         return {
@@ -102,47 +103,7 @@ export default {
         box-sizing: inherit;
     }
 
-    input[type="checkbox"] {
-        -webkit-appearance: none;
-        appearance: none;
-        display: grid;
-        place-content: center;
-        background-color: var(--grey0);
-        margin: 0;
-        font: inherit;
-        color: currentColor;
-        width:  28px;
-        height: 28px;
-        border: 0.15em solid currentColor;
-        border: 0.15em solid var(--blue600);
-        border-radius: 4px;
-    }
-
-    input[type="checkbox"]::before {
-        content: "";
-        width:  16px;
-        height: 16px;
-        transform: scale(0);
-        transition: 120ms transform ease-in-out;
-        /* box-shadow: inset 2px 2px var(--cyan600); */
-        transform-origin: center;
-        background: var(--green-cyan700);
-        /* transform-origin: bottom left; */
-        /* clip-path: polygon(15% 50%, 0 50%, 50% 100%, 100% 15%, 90% 0%, 45% 80%); */
-    }
-    
-    input[type="checkbox"]:checked::before {
-        transform: scale(1);
-    }
-
-    input[type="checkbox"]:focus {
-        box-shadow: var(--shadowNormal);
-        outline: none;
-    }
-
-    input[type="checkbox"]:hover {
-        box-shadow: var(--shadowHover);
-    }
+   
     .g-prt__form--wrapper {
         display: grid;
         height: 100vh;
@@ -159,7 +120,7 @@ export default {
             "title" 110px
             "input" auto
             "select" auto
-            "access" auto
+            "checkbox" auto
             "submit" auto
             /minmax(360px, 400px);
         border: 3px solid var(--cyan-blue200);
@@ -170,14 +131,10 @@ export default {
     .g-chd__form-title { grid-area: title; }
     .g-chd__form-input { grid-area: input; }
     .g-chd__form-select { grid-area: select; }
-    .g-chd__form-access { grid-area: access; }
+    .g-chd__form-chekbox { grid-area: checkbox; }
     .g-chd__form-submit { grid-area: submit; }
 
-    .f-prt__form-access {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
+   
 
     .f-prt__form-input {
         display: flex;
