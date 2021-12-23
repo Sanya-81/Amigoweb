@@ -6,60 +6,60 @@
             <p class="access--title">Уже есть аккаунт?<span class="access--check"> Войти</span></p>
         </div>
         <div class="g-chd__form-inputs f-prt__form-input">
-            <BaseInput
+            <base-input
                 label="Имя"
                 placeholder="Введите Ваше имя"
                 type="text"
             >
-            </BaseInput>
-            <BaseInput
+            </base-input>
+            <base-input
                 label="Email"
                 placeholder="Введите Вашу почту"
                 type="email"
             >
-            </BaseInput>
-            <BaseInput
+            </base-input>
+            <base-input
                 label="Номер телефона"
                 placeholder="Введите Ваш телефон"
                 type="tel"
             >
-            </BaseInput>
+            </base-input>
         </div>
         <div class="g-chd__form-select">
-        <BaseSelect
+        <base-select
             :db='db'
-        ></BaseSelect>
+        ></base-select>
         </div>
-        <div class="g-chd__form-chekbox">
-            <base-checkbox>
+        <div class="g-chd__form-chekbox" >
+            <base-checkbox class="access" @change="check">
                 Принимаю <span class="access--check">условия</span> использования
-            </base-checkbox>            
+            </base-checkbox>      
         </div>
         <div class="g-chd__form-submit">
-            <BaseButton
+            <base-button
                 v-if="checked === true"
                 class="button"
-            >Зарегистрироваться</BaseButton>
-            <BaseButton
+            >Зарегистрироваться</base-button>
+            <base-button
                 v-else
                 class="button"
                 disabled
-            >Зарегистрироваться</BaseButton>
+            >Зарегистрироваться</base-button>
         </div>    
     </form>
 </div>
 </template>
 
 <script>
-import BaseInput from './components/BaseInput.vue';
-import BaseButton from './components/BaseButton.vue';
-import BaseSelect from './components/BaseSelect.vue';
+import BaseInput    from './components/BaseInput.vue';
+import BaseButton   from './components/BaseButton.vue';
+import BaseSelect   from './components/BaseSelect.vue';
 import BaseCheckbox from './components/BaseCheckbox.vue';
 export default {
     components: { 
-        BaseButton, 
         BaseInput,
         BaseSelect,
+        BaseButton, 
         BaseCheckbox, 
     },
     data() {
@@ -87,6 +87,11 @@ export default {
             ],
         }
     },
+    methods: {
+        check() {
+            this.checked = !this.checked
+        }
+    }
 }
 </script>
 <style>
@@ -133,8 +138,6 @@ export default {
     .g-chd__form-select { grid-area: select; }
     .g-chd__form-chekbox { grid-area: checkbox; }
     .g-chd__form-submit { grid-area: submit; }
-
-   
 
     .f-prt__form-input {
         display: flex;

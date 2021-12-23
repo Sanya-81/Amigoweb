@@ -1,7 +1,7 @@
 <template>
 <div>
     <p>
-        <label class="inputLable">{{label}}</label>
+        <label class="input-lable">{{label}}</label>
         <br>
         <!-- <input
             class="input"
@@ -128,47 +128,7 @@ export default {
 </script>
 <style lang="scss">
     
-     input[type="checkbox"] {
-        -webkit-appearance: none;
-        appearance: none;
-        display: grid;
-        place-content: center;
-        background-color: var(--grey0);
-        margin: 0;
-        font: inherit;
-        color: currentColor;
-        width:  28px;
-        height: 28px;
-        border: 0.15em solid currentColor;
-        border: 0.15em solid var(--blue600);
-        border-radius: 4px;
-    }
-
-    input[type="checkbox"]::before {
-        content: "";
-        width:  16px;
-        height: 16px;
-        transform: scale(0);
-        transition: 120ms transform ease-in-out;
-        /* box-shadow: inset 2px 2px var(--cyan600); */
-        transform-origin: center;
-        background: var(--green-cyan700);
-        /* transform-origin: bottom left; */
-        /* clip-path: polygon(15% 50%, 0 50%, 50% 100%, 100% 15%, 90% 0%, 45% 80%); */
-    }
-    
-    input[type="checkbox"]:checked::before {
-        transform: scale(1);
-    }
-
-    input[type="checkbox"]:focus {
-        box-shadow: var(--shadowNormal);
-        outline: none;
-    }
-
-    input[type="checkbox"]:hover {
-        box-shadow: var(--shadowHover);
-    }
+     
     
     .input {
         margin-top: 7px;
@@ -205,7 +165,7 @@ export default {
         } 
     }
 
-    .inputLable {
+    .input-lable {
         color: var(--blue-magenta600);
     }
 
