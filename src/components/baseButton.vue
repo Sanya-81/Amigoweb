@@ -45,6 +45,5 @@ button {
         box-shadow: none;    
         text-shadow: none;
     }
- 
 }
 </style>
