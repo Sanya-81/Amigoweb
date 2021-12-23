@@ -128,8 +128,6 @@ export default {
 </script>
 <style lang="scss">
     
-     
-    
     .input {
         margin-top: 7px;
         outline: none;

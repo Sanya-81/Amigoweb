@@ -55,6 +55,7 @@ import BaseInput    from './components/BaseInput.vue';
 import BaseButton   from './components/BaseButton.vue';
 import BaseSelect   from './components/BaseSelect.vue';
 import BaseCheckbox from './components/BaseCheckbox.vue';
+
 export default {
     components: { 
         BaseInput,
@@ -88,6 +89,7 @@ export default {
         }
     },
     methods: {
+        // метод для BaseCheckbox.vue
         check() {
             this.checked = !this.checked
         }
